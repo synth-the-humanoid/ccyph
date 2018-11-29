@@ -11,7 +11,6 @@ int main(int argc, char **argv)
         printf("Format: ccipher <file> <[e]ncrypt or [d]ecrypt> <shift>\n");
         return 0;
     }
-
     if(isFile(argv[1]) == 0)
     {
         printf("Format: ccipher <file> <[e]ncrypt or [d]ecrypt> <shift>\n");
@@ -52,11 +51,12 @@ int isFile(char *fname)
     int retval = 1;
     FILE *fp;
     fp = fopen(fname, "r");
-    if(fp == NULL)
-    {
-        retval = 0;
+    if(fp == 0) {
+            retval = 0;
     }
-    fclose(fp);
+    if(retval == 1) {
+            fclose(fp);
+    }
     return retval;
 }
 void printenc(char *str)
